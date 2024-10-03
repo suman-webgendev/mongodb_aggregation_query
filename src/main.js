@@ -40,7 +40,7 @@ const getNumberOfActiveUsers = async () => {
   }
 };
 
-console.log("Total Active Users:", await getNumberOfActiveUsers());
+// console.log("Total Active Users:", await getNumberOfActiveUsers());
 
 //? Aggregation query to count the number of users with a particular tag present in the `tags` array.
 const getNumberOfUsersWithEnimTag = async () => {
@@ -63,10 +63,10 @@ const getNumberOfUsersWithEnimTag = async () => {
   }
 };
 
-console.log(
-  "The number of users with 'Enim' tag are:",
-  await getNumberOfUsersWithEnimTag()
-);
+// console.log(
+//   "The number of users with 'Enim' tag are:",
+//   await getNumberOfUsersWithEnimTag()
+// );
 
 //? Aggregation query to get the particular fields with multiple match conditions.
 const getInactiveUsersDataWithValitTag = async () => {
@@ -93,10 +93,10 @@ const getInactiveUsersDataWithValitTag = async () => {
   }
 };
 
-console.log(
-  "The inactive users with 'valit' tags are: ",
-  await getInactiveUsersDataWithValitTag()
-);
+// console.log(
+//   "The inactive users with 'valit' tags are: ",
+//   await getInactiveUsersDataWithValitTag()
+// );
 
 //? Aggregation query to get the number of users has 'ad' as second tag.
 const getUsersWithSecondTagAd = async () => {
@@ -118,10 +118,10 @@ const getUsersWithSecondTagAd = async () => {
   }
 };
 
-console.log(
-  "The number of users with 2nd tag 'Ad' are:",
-  await getUsersWithSecondTagAd()
-);
+// console.log(
+//   "The number of users with 2nd tag 'Ad' are:",
+//   await getUsersWithSecondTagAd()
+// );
 
 //? Aggregation query to get the users whom has all the matching tags.
 const getAllUsersWithIDandEnim = async () => {
@@ -142,10 +142,10 @@ const getAllUsersWithIDandEnim = async () => {
   }
 };
 
-console.log(
-  "The users with 'id' and 'enim' tags are:",
-  await getAllUsersWithIDandEnim()
-);
+// console.log(
+//   "The users with 'id' and 'enim' tags are:",
+//   await getAllUsersWithIDandEnim()
+// );
 
 //!------------------------------------------------- Grouping-----------------------------------------
 
@@ -186,10 +186,10 @@ const getAvgAgeUsersGroup = async () => {
   }
 };
 
-console.log(
-  "The average age of all the users is:",
-  await getAvgAgeUsersGroup()
-);
+// console.log(
+//   "The average age of all the users is:",
+//   await getAvgAgeUsersGroup()
+// );
 
 //? Aggregation query to find top 5 common favorite fruits. To calculate it we need to group all the user based on the favorite fruits and counting them then sorting them in asc order then limiting to 5.
 const getTop5CommonFavoriteFruits = async () => {
@@ -219,10 +219,10 @@ const getTop5CommonFavoriteFruits = async () => {
   }
 };
 
-console.log(
-  "Top 5 common favorite fruits are: ",
-  await getTop5CommonFavoriteFruits()
-);
+// console.log(
+//   "Top 5 common favorite fruits are: ",
+//   await getTop5CommonFavoriteFruits()
+// );
 
 //? Aggregation query to find the number of male and female users in the database.
 const getUserCountByGender = async () => {
@@ -244,10 +244,10 @@ const getUserCountByGender = async () => {
   }
 };
 
-console.log(
-  "The number of users based on the gender is:",
-  await getUserCountByGender()
-);
+// console.log(
+//   "The number of users based on the gender is:",
+//   await getUserCountByGender()
+// );
 
 //? Aggregation query to find the number of users that matched the regex in the database.
 const findUserWithRegex = async () => {
@@ -270,10 +270,10 @@ const findUserWithRegex = async () => {
   }
 };
 
-console.log(
-  "The number of users with matched phone number is: ",
-  await findUserWithRegex()
-);
+// console.log(
+//   "The number of users with matched phone number is: ",
+//   await findUserWithRegex()
+// );
 
 //? Aggregation query to find the country with highest number of users.
 const getCountryWithHighestUser = async () => {
@@ -303,10 +303,10 @@ const getCountryWithHighestUser = async () => {
   }
 };
 
-console.log(
-  "The highest number of users in: ",
-  await getCountryWithHighestUser()
-);
+// console.log(
+//   "The highest number of users in: ",
+//   await getCountryWithHighestUser()
+// );
 
 //? Aggregation query to list all the companies with number of employees in USA
 const getUsersWorksInCompanyInUSA = async () => {
@@ -333,10 +333,10 @@ const getUsersWorksInCompanyInUSA = async () => {
   }
 };
 
-console.log(
-  "All the companies in 'USA' with the number of employees are:",
-  await getUsersWorksInCompanyInUSA()
-);
+// console.log(
+//   "All the companies in 'USA' with the number of employees are:",
+//   await getUsersWorksInCompanyInUSA()
+// );
 
 //!--------------------------------------------Arrays-----------------------------------
 
@@ -397,7 +397,7 @@ const avgNumberOfTags = async () => {
   }
 };
 
-console.log("The average number of tags is:", await avgNumberOfTags());
+// console.log("The average number of tags is:", await avgNumberOfTags());
 
 //!---------------------------------Sort--------------------------------------------
 
@@ -428,10 +428,10 @@ const getLatestRegisteredUsers = async () => {
   }
 };
 
-console.log(
-  "The last 5 registered users are:",
-  await getLatestRegisteredUsers()
-);
+// console.log(
+//   "The last 5 registered users are:",
+//   await getLatestRegisteredUsers()
+// );
 
 //? Aggregation query to get category of the users based on their favorite fruits and return their names in a array with sorting.
 const getUserCategoryByFavoriteFruits = async () => {
@@ -465,10 +465,10 @@ const getUserCategoryByFavoriteFruits = async () => {
   }
 };
 
-console.log(
-  "The categories of the users by favorite fruits are: ",
-  await getUserCategoryByFavoriteFruits()
-);
+// console.log(
+//   "The categories of the users by favorite fruits are: ",
+//   await getUserCategoryByFavoriteFruits()
+// );
 
 //!---------------------------------------------------Lookup------------------------------------
 
@@ -519,7 +519,261 @@ const getAllBooksWithAuthorDetails = async () => {
   }
 };
 
-console.log(
-  "All the books with author details",
-  await getAllBooksWithAuthorDetails()
-);
+// console.log(
+//   "All the books with author details",
+//   await getAllBooksWithAuthorDetails()
+// );
+
+//!-------------------------------------------------- Comparison Operators -----------------------------------
+
+//* `$eq` (equal) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $eq: 21 } });
+    // console.log("Equal", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$ne` (not equal) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $ne: 18 } });
+    // console.log("Not equal", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$gt` (greater than) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $gt: 30 } });
+    // console.log("Greater than", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$gte` (greater than or equals) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $gte: 40 } });
+    // console.log("Greater than or equals", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$lt` (Less than) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $lt: 21 } });
+    // console.log("Less than", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$lte` (Less than or equals) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $lte: 20 } });
+    // console.log("Less than or equals", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$in` (in) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $in: [20, 21, 22] } });
+    // console.log("Within the range", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$nin` (Not in) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $nin: [20, 21, 22] } });
+    // console.log("Not in range", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//!---------------------------------- Logical Operators ----------------------------------
+
+//* `$and` (AND) operator
+(async () => {
+  try {
+    const result = await db.User.find({
+      $and: [{ age: { $gt: 20 } }, { gender: "female" }],
+    });
+    // console.log("And operator", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$or` (OR) operator
+(async () => {
+  try {
+    const result = await db.User.find({
+      $or: [{ age: { $lt: 21 } }, { gender: "female" }],
+    });
+    // console.log("Or operator", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$not` (NOT) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $not: { $gt: 22 } } });
+    // console.log("Not operator", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$nor` (NOR) operator
+(async () => {
+  try {
+    const result = await db.User.find({
+      $nor: [{ age: { $lt: 18 } }, { gender: "female" }],
+    });
+    // console.log("Nor operator", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//!---------------------------------- Evaluation Operators ----------------------------
+
+//* `$regex` (Regular expression) operator with `$options` with Case insensitive
+(async () => {
+  try {
+    const result = await db.User.find({
+      name: { $regex: /^J/, $options: "i" },
+    });
+    // console.log("Usernames starts with j", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$expr` (Aggregation expressions) operator
+(async () => {
+  try {
+    const result = await db.User.find({ $expr: { $gt: ["$index", "$age"] } });
+    // console.log("Returns where index greater than age", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$mod` (Mod) operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $mod: [2, 0] } });
+    // console.log("Returns those users age is even", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$text` and `$search` operator
+(async () => {
+  try {
+    //! Won't work unless $text query is enabled
+    // const result = await db.User.find({ $text: { $search: "Whitaker" } });
+    // console.log("Returns if user includes the search term", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//!--------------------------- Element Operators -------------------------------------
+
+//* `$exists` operator
+(async () => {
+  try {
+    const result = await db.User.find({ company: { $exists: true } });
+    // console.log("Returns if user object has company object in it", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$type` operator
+(async () => {
+  try {
+    const result = await db.User.find({ age: { $type: "int" } });
+    // console.log("Returns those users who has age as int", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//!---------------------------- Array Operators ----------------------------
+
+//* `$all` operator
+(async () => {
+  try {
+    const result = await db.User.find({
+      tags: { $all: ["in", "adipisicing"] },
+    });
+    // console.log("Returns users if it match all the key", result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
+//* `$elemMatch` operator
+
+//* `$size` operator
+
+//!---------------------------------- Update Operators --------------------------------
+
+//* `$set` operator
+
+//* `$unset` operator
+
+//* `$inc` operator
+
+//* `$mul` operator
+
+//* `$rename` operator
+
+//* `$push` operator
+
+//* `$pull` operator
+
+//* `$pop` operator
+
+//* `$addToSet` operator
