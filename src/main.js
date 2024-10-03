@@ -475,6 +475,7 @@ console.log(
 //? Aggregation query to get all the books with author object using 'lookup' and 'arrayElemAt'
 const getAllBooksWithAuthorDetails = async () => {
   try {
+    //* This method uses `arrayElemAt` operator to get the first element of the array.
     const result = await db.Book.aggregate([
       {
         $lookup: {
@@ -492,7 +493,26 @@ const getAllBooksWithAuthorDetails = async () => {
         },
       },
     ]);
-    return result;
+
+    //* This method uses `first` operator to get the first element of the array.
+    const result2 = await db.Book.aggregate([
+      {
+        $lookup: {
+          from: "authors",
+          localField: "author_id",
+          foreignField: "_id",
+          as: "author_details",
+        },
+      },
+      {
+        $addFields: {
+          author_details: {
+            $first: "$author_details",
+          },
+        },
+      },
+    ]);
+    return { result, result2 };
   } catch (error) {
     console.error(error);
     return null;
