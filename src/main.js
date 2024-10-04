@@ -1,14 +1,12 @@
 "use strict";
 
-import dotenv from "dotenv";
+import { db } from "@/models/db.js";
+import "dotenv/config";
 import mongoose from "mongoose";
-import { db } from "./models/db.js";
-
-dotenv.config();
 
 // MongoDB connection
 mongoose.Promise = Promise;
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL || "");
 
 mongoose.connection.on("error", (error) => {
   console.log("Database connection error:", error);
@@ -20,9 +18,36 @@ mongoose.connection.once("connected", () => {
 
 //!--------------------------------------Filter (Match)--------------------------------------------------
 
-//? Aggregation query for count.
+/**
+ * @typedef {Object} User
+ * @property {Object} _id - The MongoDB ObjectId of the user
+ * @property {number} index - The index of the user
+ * @property {string} name - The name of the user
+ * @property {boolean} isActive - Whether the user is active or not
+ * @property {Date} registered - The date when the user registered
+ * @property {number} age - The age of the user
+ * @property {"male" | "female"} gender - The gender of the user
+ * @property {string} eyeColor - The eye color of the user
+ * @property {string} favoriteFruit - The user's favorite fruit
+ * @property {Object} company - The company information of the user
+ * @property {string} company.title - The title of the company
+ * @property {string} company.email - The email of the company
+ * @property {string} company.phone - The phone number of the company
+ * @property {Object} company.location - The location of the company
+ * @property {string} company.location.country - The country of the company.
+ * @property {string} company.location.address - The address of the company.
+ * @property {string[]} tags - An array of tags associated with the user.
+ */
+
+/**
+ * Aggregation query for count.
+ * @typedef {Object} ActiveUsersCount
+ * @property {number} activeUsers - The number of active users
+ * @returns {Promise<number>} Returns an array with the count of active users.
+ */
 const getNumberOfActiveUsers = async () => {
   try {
+    /** @type {ActiveUsersCount[]} */
     const result = await db.User.aggregate([
       {
         $match: {
@@ -33,18 +58,24 @@ const getNumberOfActiveUsers = async () => {
         $count: "activeUsers",
       },
     ]);
-    return result;
+
+    return result.length > 0 ? result[0].activeUsers : 0;
   } catch (err) {
     console.error(err);
-    return null;
+    return -1;
   }
 };
-
 // console.log("Total Active Users:", await getNumberOfActiveUsers());
 
-//? Aggregation query to count the number of users with a particular tag present in the `tags` array.
+/**
+ * Aggregation query to count the number of users with a `enim` tag present in the `tags` array.
+ * @typedef {Object} UsersWithEnimTag
+ * @property {number} noOfUsersWithEnimTag - The number of users with `enim` tag.
+ * @returns {Promise<number>} The number of users with a `enim` tag present in the `tags` array.
+ */
 const getNumberOfUsersWithEnimTag = async () => {
   try {
+    /**@type {UsersWithEnimTag[]} */
     const result = await db.User.aggregate([
       {
         $match: {
@@ -56,10 +87,10 @@ const getNumberOfUsersWithEnimTag = async () => {
       },
     ]);
 
-    return result;
+    return result.length > 0 ? result[0].noOfUsersWithEnimTag : 0;
   } catch (error) {
     console.error(error);
-    return null;
+    return -1;
   }
 };
 
@@ -68,9 +99,17 @@ const getNumberOfUsersWithEnimTag = async () => {
 //   await getNumberOfUsersWithEnimTag()
 // );
 
-//? Aggregation query to get the particular fields with multiple match conditions.
+/**
+ * Aggregation query to get the particular fields with multiple match conditions.
+ * @typedef {Object} InactiveUsersWithValitTag
+ * @property {object} _id - Id with the user.
+ * @property {string} name - Name of the user.
+ * @property {number} age - Age of the user.
+ * @returns {Promise<InactiveUsersWithValitTag[] | null>}
+ */
 const getInactiveUsersDataWithValitTag = async () => {
   try {
+    /**@type {InactiveUsersWithValitTag[]} */
     const result = await db.User.aggregate([
       {
         $match: {
@@ -98,9 +137,15 @@ const getInactiveUsersDataWithValitTag = async () => {
 //   await getInactiveUsersDataWithValitTag()
 // );
 
-//? Aggregation query to get the number of users has 'ad' as second tag.
+/**
+ * Aggregation query to get the number of users has 'ad' as second tag.
+ * @typedef {Object} UsersWithAdTag
+ * @property {number} secondTagHasAD - Number of users.
+ * @returns {Promise<number>} Number of users with `Ad` tag at the second position on the `tags` array.
+ */
 const getUsersWithSecondTagAd = async () => {
   try {
+    /**@type {UsersWithAdTag[]} */
     const result = await db.User.aggregate([
       {
         $match: {
@@ -111,10 +156,10 @@ const getUsersWithSecondTagAd = async () => {
         $count: "secondTagHasAD",
       },
     ]);
-    return result;
+    return result.length > 0 ? result[0].secondTagHasAD : 0;
   } catch (error) {
     console.error(error);
-    return null;
+    return -1;
   }
 };
 
@@ -123,9 +168,13 @@ const getUsersWithSecondTagAd = async () => {
 //   await getUsersWithSecondTagAd()
 // );
 
-//? Aggregation query to get the users whom has all the matching tags.
+/**
+ * Aggregation query to get the users who have all the matching tags.
+ * @returns {Promise<User[] | null>}
+ */
 const getAllUsersWithIDandEnim = async () => {
   try {
+    /**@type {User[]} */
     const result = await db.User.aggregate([
       {
         $match: {
@@ -135,6 +184,7 @@ const getAllUsersWithIDandEnim = async () => {
         },
       },
     ]);
+
     return result;
   } catch (error) {
     console.error(error);
@@ -756,24 +806,30 @@ const getAllBooksWithAuthorDetails = async () => {
 
 //* `$elemMatch` operator
 
+(async () => {
+  try {
+    const result = await db.User.find({
+      tags: { $elemMatch: {} },
+    });
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
+
 //* `$size` operator
 
-//!---------------------------------- Update Operators --------------------------------
-
-//* `$set` operator
-
-//* `$unset` operator
-
-//* `$inc` operator
-
-//* `$mul` operator
-
-//* `$rename` operator
-
-//* `$push` operator
-
-//* `$pull` operator
-
-//* `$pop` operator
-
-//* `$addToSet` operator
+(async () => {
+  try {
+    /**@type {User[]} */
+    const result = await db.User.find({
+      tags: {
+        $size: 2,
+      },
+    });
+    // console.log(result);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+})();
